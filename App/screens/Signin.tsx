@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Button,
   StyleSheet,
   Text,
   TextInput,
@@ -63,6 +62,7 @@ const Signin = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'rgb(21, 22, 25)',
   },
   textTitle: {
     color: 'rgb(242, 244, 244)',
