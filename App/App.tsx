@@ -12,9 +12,14 @@ import Income from './screens/Income.tsx';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Expenses from './screens/Expenses.tsx';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
+import Signup from './screens/Signup.tsx';
+import {
+  RootStackParamList,
+  TabNavigationParamList,
+} from './@types/navigation.ts';
 
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator<TabNavigationParamList>();
 
 const TabNavigation = () => {
   return (
@@ -44,7 +49,10 @@ const App = () => {
           headerShown: false,
         }}>
         {state.token === null ? (
-          <Stack.Screen name="Signin" component={Signin} />
+          <>
+            <Stack.Screen name="Signin" component={Signin} />
+            <Stack.Screen name="Signup" component={Signup} />
+          </>
         ) : (
           <Stack.Screen name="TabNavigation" component={TabNavigation} />
         )}
