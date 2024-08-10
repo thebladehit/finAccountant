@@ -1,39 +1,63 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Signin from './screens/Signin.tsx';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import {
   AuthContext,
   Provider as AuthProvider,
 } from './context/AuthContext.tsx';
 import { AuthContextType } from './@types/auth.ts';
 import Income from './screens/Income.tsx';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Expenses from './screens/Expenses.tsx';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+const TabNavigation = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: '#292929',
+          borderTopWidth: 0,
+        },
+        tabBarInactiveTintColor: 'gray',
+        tabBarActiveTintColor: 'tomato',
+      }}>
+      <Tab.Screen name="Income" component={Income} />
+      <Tab.Screen name="Expenses" component={Expenses} />
+    </Tab.Navigator>
+  );
+};
 
 const App = () => {
   const { state } = useContext(AuthContext) as AuthContextType;
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: 'rgb(21, 22, 25)' }}>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}>
-          {state.token === null ? (
-            <Stack.Screen name="Signin" component={Signin} />
-          ) : (
-            <Stack.Screen name="Income" component={Income} />
-          )}
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
+        {state.token === null ? (
+          <Stack.Screen name="Signin" component={Signin} />
+        ) : (
+          <Stack.Screen name="TabNavigation" component={TabNavigation} />
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
 export default () => {
+  useEffect(() => {
+    changeNavigationBarColor('#292929');
+  }, []);
+
   return (
     <>
       <StatusBar barStyle="light-content" backgroundColor="rgb(21, 22, 25)" />
