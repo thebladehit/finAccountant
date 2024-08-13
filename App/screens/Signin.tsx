@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  Image,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -47,6 +48,15 @@ const Signin = ({ navigation }: RootStackScreenProps<'Signin'>) => {
 
       <TouchableOpacity style={styles.button}>
         <Text style={{ color: 'rgb(242, 244, 244)' }}>Sign In</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={{ ...styles.button, ...styles.imageButton }}>
+        <Image
+          source={require('../../assets/googleLogo.png')}
+          style={styles.image}
+        />
+        <Text style={{ color: 'rgb(19,19,19)', fontWeight: 700 }}>
+          Sign In With Google
+        </Text>
       </TouchableOpacity>
 
       <View style={styles.bottomContainer}>
@@ -108,6 +118,16 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginBottom: 20,
     backgroundColor: 'rgb(60, 72, 237)',
+  },
+  imageButton: {
+    backgroundColor: '#ffffff',
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  image: {
+    height: 35,
+    width: 35,
+    marginRight: 10,
   },
 });
 
