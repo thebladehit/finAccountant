@@ -8,8 +8,9 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
+import { RootStackScreenProps } from '../@types/navigation.ts';
 
-const ForgotPassword = () => {
+const ForgotPassword = ({ navigation }: RootStackScreenProps<'ForgotPassword'>) => {
   const [email, setEmail] = useState<string>('');
   const [code, setCode] = useState<string>('');
   const [isEmailSent, setIsEmailSent] = useState<boolean>(false);
@@ -29,6 +30,7 @@ const ForgotPassword = () => {
     if (isCodeSent) return;
     setIsCodeSent(true);
     // TODO if everything good go to changePass screen
+    navigation.navigate('ChangePassword');
   };
 
   return (
@@ -73,7 +75,9 @@ const ForgotPassword = () => {
             </Text>
           </TouchableOpacity>
         )}
-        {isCodeSent && <ActivityIndicator size="large" style={{ marginBottom: 15 }} />}
+        {isCodeSent && (
+          <ActivityIndicator size="large" style={{ marginBottom: 15 }} />
+        )}
         {isEmailSent && (
           <TouchableOpacity style={styles.button} onPress={handleSendCode}>
             <Text style={{ color: 'rgb(242, 244, 244)', fontWeight: 700 }}>

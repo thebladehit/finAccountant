@@ -18,6 +18,7 @@ import {
   TabNavigationParamList,
 } from './@types/navigation.ts';
 import ForgotPassword from './screens/ForgotPassword.tsx';
+import ChangePassword from './screens/ChangePassword.tsx';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<TabNavigationParamList>();
@@ -54,6 +55,7 @@ const App = () => {
             <Stack.Screen name="Signin" component={Signin} />
             <Stack.Screen name="Signup" component={Signup} />
             <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+            <Stack.Screen name="ChangePassword" component={ChangePassword} />
           </>
         ) : (
           <Stack.Screen name="TabNavigation" component={TabNavigation} />
