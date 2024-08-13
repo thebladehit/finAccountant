@@ -41,7 +41,9 @@ const Signin = ({ navigation }: RootStackScreenProps<'Signin'>) => {
           autoCapitalize="none"
           autoCorrect={false}
         />
-        <TouchableOpacity style={{ alignSelf: 'flex-end', marginRight: '10%' }}>
+        <TouchableOpacity
+          style={{ alignSelf: 'flex-end', marginRight: '10%' }}
+          onPress={() => navigation.navigate('ForgotPassword')}>
           <Text style={styles.subTitle}>Forgot password?</Text>
         </TouchableOpacity>
       </View>

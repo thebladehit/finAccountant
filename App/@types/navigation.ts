@@ -5,6 +5,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 export type RootStackParamList = {
   Signin?: undefined;
   Signup?: undefined;
+  ForgotPassword?: undefined;
   TabNavigation?: NavigatorScreenParams<TabNavigationParamList>;
 };
 
